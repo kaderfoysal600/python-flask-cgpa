@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}My Report{% endblock %}
+{% block page_content %}
+	<div class="content">
+		<h2>Edit my report</h2> <br/>
+		<form action="/edit/{{ report.id }}" method="POST">
+			<label for="course_code">Course Code :</label>
+			<input style="background-color: chartreuse;" type="text" name="course_code" id="course_code" value="{{ report.course_code }}"><br/>
+			<label for="course_name">Subject Name :</label>
+			<input style="background-color: chartreuse;" type="text" name="course_name" id="course_name" value="{{ report.course_name }}"><br/>
+			<label for="course_cradit">Course Cradit :</label>
+			<input style="background-color: chartreuse;" type="number" name="course_cradit" id="course_cradit" value="{{ report.course_cradit }}"><br/>
+			<label for="got_marks">Marks :</label>
+			<input style="background-color: chartreuse;" type="number;" name="got_marks" id="got_marks" value="{{ report.got_marks }}"><br/>
+			<input style="background-color:orangered ; color: white; " type="submit" value="Edit Subject">
+		</form>
+	</div>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}My Report{% endblock %}
+{% block page_content %}
+	<div class="content">
+		<h1 class="text-center display-4">My Report</h1>
+		<br/>
+		<table class="text-center table table-dark">
+			<tr>
+				<th>Course Code</th>
+				<th>Course Name</th>
+				<th>Course Cradit</th>
+				<th>Marks</th>
+				<th>Grade</th>
+				<th>Grade Point</th>
+				<th>Earned Cradit</th>
+				<th>Score</th>
+				<th>Edit/Delete</th>
+			</tr>
+			{% for report in reports %}
+				<tr>
+					<td>{{ report.course_code }}</td>
+					<td>{{ report.course_name }}</td>
+					<td>{{ report.course_cradit }}</td>
+					<td>{{ report.got_marks }}</td>
+					<!-- Grade -->
+					{% if report.got_marks > 100 or report.course_cradit > 4 %}
+						<td>Invalid</td>
+						{% elif report.got_marks >= 80 %}
+							<td>A+</td>
+						{% elif report.got_marks >= 75 %}
+							<td>A</td>
+						{% elif report.got_marks >= 70 %}
+							<td>A-</td>
+						{% elif report.got_marks >= 65 %}
+							<td>B+</td>
+						{% elif report.got_marks >= 60 %}
+							<td>B</td>
+						{% elif report.got_marks >= 55 %}
+							<td>B-</td>
+						{% elif report.got_marks >= 50 %}
+							<td>C+</td>
+						{% elif report.got_marks >= 45 %}
+							<td>C</td>
+						{% elif report.got_marks >= 40 %}
+							<td>D</td>
+						{% else %}
+							<td>F</td>
+					{% endif %}
+					<!-- Grade Point -->
+					{% if report.got_marks > 100 or report.course_cradit > 4 %}
+						<td>Invalid</td>
+					{% elif report.got_marks >= 40 %}
+						{% if report.got_marks % 5 == 0 %}
+							<td>{{ report.got_marks/20 }}</td>
+						{% elif report.got_marks % 5 == 4 %}
+							<td>{{ (report.got_marks - 4)/20 }}</td>
+						{% elif report.got_marks % 5 == 3 %}
+							<td>{{ (report.got_marks - 3)/20 }}</td>
+						{% elif report.got_marks % 5 == 2 %}
+							<td>{{ (report.got_marks - 2)/20 }}</td>
+						{% else %}
+							<td>{{ (report.got_marks - 1)/20 }}</td>
+						{% endif %}
+					{% else %}
+						<td>0.00</td>
+					{% endif %}
+					<!-- Got Cradit -->
+					{% if report.got_marks > 100 or report.course_cradit > 4 %}
+						<td>Invalid</td>
+					{% elif report.got_marks >= 40 %}
+						<td>{{ report.course_cradit }}</td>
+					{% else %}
+						<td>0</td>
+					{% endif %}
+					<!-- Score -->
+					{% if report.got_marks > 100 or report.course_cradit > 4 %}
+						<td>Invalid</td>
+					{% elif report.got_marks >= 40 %}
+						{% if report.got_marks % 5 == 0 %}
+							<td>{{ (report.got_marks/20) * report.course_cradit }}</td>
+						{% elif report.got_marks % 5 == 4 %}
+							<td>{{ ((report.got_marks - 4)/20) * report.course_cradit }}</td>
+						{% elif report.got_marks % 5 == 3 %}
+							<td>{{ ((report.got_marks - 3)/20) * report.course_cradit }}</td>
+						{% elif report.got_marks % 5 == 2 %}
+							<td>{{ ((report.got_marks - 2)/20) * report.course_cradit }}</td>
+						{% else %}
+							<td>{{ ((report.got_marks - 1)/20) * report.course_cradit }}</td>
+						{% endif %}
+					{% else %}
+						<td>0.00</td>
+					{% endif %}
+					<td>
+						<a href="/edit/{{ report.id }}">Edit</a>
+						<a href="/delete/{{ report.id }}">Delete</a>
+					</td>
+				</tr>
+				{% endfor %}
+		</table>
+		<br/>
+		<hr/>
+		<h2>Add a new subject:</h2>
+		<form action="/" method="POST">
+			<label for="course_code">Course Code :</label>
+			<input style="background-color: chartreuse;" type="text" name="course_code" id="course_code"><br/>
+			<label for="course_name">Subject Name :</label>
+			<input  style="background-color: chartreuse;" type="text" name="course_name" id="course_name"><br/>
+			<label for="course_cradit">Course Cradit :</label>
+			<input style="background-color: chartreuse;" type="number" name="course_cradit" id="course_cradit"><br/>
+			<label for="got_marks">Marks :</label>
+			<input style="background-color: chartreuse;" type="number" name="got_marks" id="got_marks"><br/>
+			<input style="background-color:orangered ; color: white; " type="submit" value="Add Subject">
+		</form>
+	</div>
+{% endblock %}
