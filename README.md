@@ -39,13 +39,6 @@ This is project is for MIU students, who want to calculate his/her expected CGPA
 
 - Add your Course Code, Course Name, Course Cradit and Expected marks && ENJOY.
 
-## Contributors
-
-👤 **A B M Asadullah** (Development)
-
-- GitHub: [@abmAsadullah](https://github.com/abmAsadullah)
-- Twitter: [@abmAsadullah](https://twitter.com/abmAsadullah)
-- LinkedIn: [abmAsadullah](https://www.linkedin.com/in/abmAsadullah)
 
 👤 **Naimul Hawk** (Template)
 
